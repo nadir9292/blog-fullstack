@@ -7,7 +7,7 @@ const Input = (props) => {
     <input
       {...otherProps}
       className={classNames(
-        "block mt-2 border-2 border-slate-200 py-1 px-2",
+        "rounded block mt-2 border-2 border-gray-400 py-1 px-2 bg-zinc-100",
         className
       )}
     />

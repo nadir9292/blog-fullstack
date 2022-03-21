@@ -4,36 +4,30 @@ import FormField from "../src/components/formUI/FormField"
 import Button from "../src/components/Button"
 import Text from "../src/components/Text"
 import {
-  pseudoValidator,
   emailValidator,
   passwordValidator,
 } from "../src/components/validators/validators"
 import * as yup from "yup"
 import { useCallback, useState } from "react"
+import Link from "next/link"
 import { makeClient } from "../src/services/api"
 
 const initialValues = {
-  pseudo: "",
   email: "",
   password: "",
 }
 
 const validationSchema = yup.object().shape({
-  pseudo: pseudoValidator.required(),
   email: emailValidator.required(),
   password: passwordValidator.required(),
 })
 
-const Register = () => {
+const Login = () => {
   const [error, setError] = useState(null)
-  const handleFormSubmit = useCallback(async ({ pseudo, email, password }) => {
+  const handleFormSubmit = useCallback(async ({ email, password }) => {
     setError(null)
     try {
-      const { data } = await makeClient().post("/register", {
-        pseudo,
-        email,
-        password,
-      })
+      const { data } = await makeClient().post("/login", { email, password })
     } catch (err) {
       const { response: { data } = {} } = err
       if (data.error) {
@@ -57,11 +51,16 @@ const Register = () => {
             validationSchema={validationSchema}
             className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center"
           >
+            {error ? (
+              <p className="bg-red-600 text-white font-bold px-4 py-2">
+                {error} 😕
+              </p>
+            ) : null}
+
             <div className="flex flex-col">
-              <Text variant="login_register">Create your account</Text>
-              <FormField name="pseudo" type="text">
-                Pseudo
-              </FormField>
+              <Text variant="login_register" size="lg">
+                Sign in to Zwitter
+              </Text>
               <FormField name="email" type="email">
                 E-mail
               </FormField>
@@ -77,6 +76,14 @@ const Register = () => {
               >
                 Log in
               </Button>
+              <Text variant="info" sizes="sm">
+                Don't have an account ?&nbsp;
+                <Link href="/register">
+                  <a>
+                    <Text variant="link">Sign Up</Text>
+                  </a>
+                </Link>
+              </Text>
             </div>
           </form>
         )}
@@ -85,6 +92,6 @@ const Register = () => {
   )
 }
 
-Register.getLayout = (page) => <Layout title="Zwitter"> {page} </Layout>
+Login.getLayout = (page) => <Layout title="Zwitter"> {page} </Layout>
 
-export default Register
+export default Login

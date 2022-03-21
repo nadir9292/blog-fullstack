@@ -8,7 +8,7 @@ const FormField = (props) => {
     <Field {...otherProps}>
       {({ field, meta: { touched, error } }) => (
         <div className={className}>
-          <label className="block font-bold">
+          <label className="block font-bold mt-2">
             {children}
             <Input className="w-full" {...field} {...otherProps} />
           </label>

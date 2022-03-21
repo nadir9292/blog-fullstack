@@ -8,7 +8,7 @@ const variants = {
   secondary:
     "inline-flex items-center m-1 rounded-lg font-medium text-zinc-200 bg-sky-900 hover:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
   btnValidation:
-    "inline-flex m-1 border border-transparent rounded-lg shadow-lg  font-medium text-zinc-200 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700",
+    "w-full flex items-center justify-center mt-5 border border-transparent rounded-lg shadow-lg  font-medium text-zinc-200 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700",
 }
 
 const sizes = {
