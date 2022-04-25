@@ -6,9 +6,6 @@ html,
 body,
 #__next {
   @apply min-h-full;
-}
-
-body {
   background-color: rgb(7 89 133);
 }
 

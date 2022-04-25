@@ -8,9 +8,10 @@ import {
   passwordValidator,
 } from "../src/components/validators/validators"
 import * as yup from "yup"
-import { useCallback, useState } from "react"
+import { useCallback, useContext, useState } from "react"
 import Link from "next/link"
-import { makeClient } from "../src/services/api"
+import { makeClient } from "../src/services/makeClient"
+import { AppContext } from "../src/components/AppContext"
 
 const initialValues = {
   email: "",
@@ -24,10 +25,19 @@ const validationSchema = yup.object().shape({
 
 const Login = () => {
   const [error, setError] = useState(null)
+  const { saveJWT } = useContext(AppContext)
   const handleFormSubmit = useCallback(async ({ email, password }) => {
     setError(null)
     try {
-      const { data } = await makeClient().post("/login", { email, password })
+      const {
+        data: { jwt },
+      } = await makeClient().post("/login", { email, password })
+
+      if (!jwt) {
+        throw new Error("Missing JWT.")
+      }
+
+      saveJWT(jwt)
     } catch (err) {
       const { response: { data } = {} } = err
       if (data.error) {
@@ -48,7 +58,6 @@ const Login = () => {
         {({ isSubmitting, isValid, handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            validationSchema={validationSchema}
             className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center"
           >
             {error ? (
@@ -58,7 +67,7 @@ const Login = () => {
             ) : null}
 
             <div className="flex flex-col">
-              <Text variant="login_register" size="lg">
+              <Text variant="login_register" size="xl">
                 Sign in to Zwitter
               </Text>
               <FormField name="email" type="email">
@@ -92,6 +101,6 @@ const Login = () => {
   )
 }
 
-Login.getLayout = (page) => <Layout title="Zwitter"> {page} </Layout>
+Login.getLayout = (page) => <Layout title="Zwitter">{page}</Layout>
 
 export default Login

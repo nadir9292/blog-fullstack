@@ -16,7 +16,7 @@ const sizes = {
   md: "py-1.5 px-3 text-md",
   lg: "py-2.5 px-5 text-lg",
 }
-//test git
+
 const Button = (props) => {
   const { variant, size, ...otherProps } = props
 

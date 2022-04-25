@@ -3,15 +3,20 @@ import classNames from "classnames"
 const className = "font-bold"
 
 const variants = {
-  login_register: "text-gray-900 font-semibold font-family: Consolas text-2xl",
+  login_register: "text-gray-900 font-semibold font-family: Consolas",
+  popup: "text-gray-900 font-semibold font-family: Consolas",
   info: "text-gray-900 font-medium pt-2",
   link: "underline underline-offset-1 text-blue-500 font-semibold",
+  post_title: "text-amber-500 font-bold text-center",
+  post_content: "text-zinc-200 text-center",
+  post_author: "text-zinc-200 underline text-center",
 }
 
 const sizes = {
   sm: "py-1 px-1.5 text-xs",
   md: "py-1.5 px-3 text-md",
   lg: "py-2.5 px-5 text-lg",
+  xl: "py-2.5 px-5 text-3xl",
 }
 //test git
 const Text = (props) => {

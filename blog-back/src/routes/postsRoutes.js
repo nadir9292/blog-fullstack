@@ -26,7 +26,7 @@ const postRoutes = ({ app }) => {
     res.send(post)
   })
 
-  //GET all post by author
+  //GET post by author
   app.get("/:userId/my-posts", auth, async (req, res) => {
     const {
       params: { userId },
@@ -40,6 +40,12 @@ const postRoutes = ({ app }) => {
     }
 
     const post = await PostModel.query().where("userId", userId)
+    res.send(post)
+  })
+
+  // GET all posts
+  app.get("/posts", async (req, res) => {
+    const post = await PostModel.query()
     res.send(post)
   })
 }
