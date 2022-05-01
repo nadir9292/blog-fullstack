@@ -4,7 +4,8 @@ const className = "font-bold"
 
 const variants = {
   login_register: "text-gray-900 font-semibold font-family: Consolas",
-  popup: "text-gray-900 font-semibold font-family: Consolas",
+  popup:
+    "flex justify-center text-gray-900 font-semibold font-family: Consolas",
   info: "text-gray-900 font-medium pt-2",
   link: "underline underline-offset-1 text-blue-500 font-semibold",
   post_title: "text-amber-500 font-bold text-center",

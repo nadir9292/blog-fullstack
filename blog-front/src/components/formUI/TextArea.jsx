@@ -1,17 +1,17 @@
 import classNames from "classnames"
 
-const Th = (props) => {
+const Input = (props) => {
   const { className, ...otherProps } = props
 
   return (
-    <th
+    <textarea
       {...otherProps}
       className={classNames(
-        "px-6 py-3 text-left text-md font-medium text-gray-500 uppercase tracking-wider",
+        "rounded block mt-2 border-2 border-gray-400 py-1 px-2 bg-zinc-100",
         className
       )}
-    ></th>
+    />
   )
 }
 
-export default Th
+export default Input

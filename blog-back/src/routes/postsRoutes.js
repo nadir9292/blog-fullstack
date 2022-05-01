@@ -43,6 +43,21 @@ const postRoutes = ({ app }) => {
     res.send(post)
   })
 
+  //GET post by id
+  app.get("/:postId/viewPost", async (req, res) => {
+    const {
+      params: { postId },
+    } = req
+
+    const post = await PostModel.query().findById(postId)
+
+    if (!post) {
+      res.status(401).send({ error: "post don't exist ! " })
+      return
+    }
+    res.send(post)
+  })
+
   // GET all posts
   app.get("/posts", async (req, res) => {
     const post = await PostModel.query()

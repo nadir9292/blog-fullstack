@@ -57,7 +57,9 @@ const userRoutes = ({ app }) => {
       { expiresIn: config.security.session.expiresIn }
     )
 
-    res.send({ jwt })
+    const userId = user.id
+
+    res.send({ jwt, userId })
   })
 
   //GET BY ID

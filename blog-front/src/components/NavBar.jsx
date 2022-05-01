@@ -2,7 +2,7 @@ import Link from "next/link"
 import Button from "./Button"
 
 const NavBar = (props) => {
-  const { title } = props
+  const { title, islogged, logout } = props
 
   return (
     <div className="flex justify-between bg-sky-900">
@@ -13,23 +13,31 @@ const NavBar = (props) => {
           </h1>
         </a>
       </Link>
-      <div className="flex justify-end">
-        <Link href="/register" passHref>
-          <a>
-            <Button type="button" variant="primary" size="lg">
-              Sign Up
-            </Button>
-          </a>
-        </Link>
+      {!islogged ? (
+        <div className="flex justify-end">
+          <Button type="button" variant="primary" size="lg" onClick={logout}>
+            Log out
+          </Button>
+        </div>
+      ) : (
+        <div className="flex justify-end">
+          <Link href="/register" passHref>
+            <a>
+              <Button type="button" variant="primary" size="lg">
+                Sign Up
+              </Button>
+            </a>
+          </Link>
 
-        <Link href="/login" passHref>
-          <a>
-            <Button type="button" variant="secondary" size="lg">
-              Sign In
-            </Button>
-          </a>
-        </Link>
-      </div>
+          <Link href="/login" passHref>
+            <a>
+              <Button type="button" variant="secondary" size="lg">
+                Sign In
+              </Button>
+            </a>
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

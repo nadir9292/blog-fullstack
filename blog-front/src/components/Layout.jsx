@@ -1,9 +1,8 @@
 import Head from "next/head"
-import Footer from "./Footer"
 import NavBar from "./NavBar"
 
 const Layout = (props) => {
-  const { title, children } = props
+  const { title, children, islogged, logout } = props
 
   return (
     <>
@@ -11,12 +10,9 @@ const Layout = (props) => {
         <title>{title}</title>
       </Head>
       <header>
-        <NavBar title={title}></NavBar>
+        <NavBar title={title} islogged={islogged} logout={logout}></NavBar>
       </header>
       <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
     </>
   )
 }
